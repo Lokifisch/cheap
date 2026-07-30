@@ -1,0 +1,71 @@
+name: Build .deb and publish apt repo
+
+on:
+  push:
+    tags:
+      - 'v*'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pages: write
+
+jobs:
+  build-and-publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install build dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y cmake build-essential pkg-config libgtk-4-dev apt-utils
+
+      - name: Configure and build
+        run: |
+          cmake -B build -DCMAKE_BUILD_TYPE=Release
+          cmake --build build -j
+
+      - name: Build .deb
+        working-directory: build
+        run: cpack -G DEB
+
+      - name: Attach .deb to the GitHub release
+        if: startsWith(github.ref, 'refs/tags/')
+        uses: softprops/action-gh-release@v2
+        with:
+          files: build/*.deb
+
+      - name: Import GPG signing key
+        env:
+          GPG_PRIVATE_KEY: ${{ secrets.GPG_PRIVATE_KEY }}
+        run: |
+          echo "$GPG_PRIVATE_KEY" | gpg --batch --import
+          echo "${{ secrets.GPG_KEY_ID }}" > /tmp/keyid
+
+      - name: Assemble apt repository
+        run: |
+          mkdir -p repo/pool/main repo/dists/stable/main/binary-amd64
+          cp build/*.deb repo/pool/main/
+          cd repo
+          apt-ftparchive packages pool > dists/stable/main/binary-amd64/Packages
+          gzip -9fk dists/stable/main/binary-amd64/Packages
+          cd dists/stable
+          apt-ftparchive \
+            -o APT::FTPArchive::Release::Origin=CHEAP \
+            -o APT::FTPArchive::Release::Suite=stable \
+            -o APT::FTPArchive::Release::Components=main \
+            -o APT::FTPArchive::Release::Architectures=amd64 \
+            release . > Release
+          gpg --batch --yes --default-key "$(cat /tmp/keyid)" -abs -o Release.gpg Release
+          gpg --batch --yes --default-key "$(cat /tmp/keyid)" --clearsign -o InRelease Release
+
+      - name: Export public signing key for users to trust
+        run: gpg --batch --armor --export "$(cat /tmp/keyid)" > repo/cheap-archive-keyring.asc
+
+      - name: Publish to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./repo
+          publish_branch: gh-pages

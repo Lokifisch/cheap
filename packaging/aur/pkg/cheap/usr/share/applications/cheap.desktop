@@ -1,0 +1,10 @@
+[Desktop Entry]
+Type=Application
+Name=CHEAP
+GenericName=Minecraft Enchantment Ordering Tool
+Comment=Find the cheapest anvil order to combine enchanted books
+Exec=cheap
+Icon=cheap
+Terminal=false
+Categories=Game;Utility;
+Keywords=minecraft;enchant;enchantment;anvil;
