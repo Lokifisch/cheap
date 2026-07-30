@@ -1,0 +1,17 @@
+Package: cheap
+Architecture: amd64
+Version: 1.0.0
+Priority: optional
+Section: games
+Maintainer: lokifisch <lokifisch@lokifisch.dev>
+Installed-Size: 597
+Depends: libc6 (>= 2.34), libglib2.0-0t64 (>= 2.68.0), libgtk-4-1 (>= 4.9.2)
+Filename: pool/main/cheap_1.0.0_amd64.deb
+Size: 476508
+MD5sum: 2487ffd810f44b7ee8d4377473cd205b
+SHA1: ba2e92ba35f267d5a8f0ff6c94402d2dec869dd9
+SHA256: 1e9ea886de8ae8cdef300fa6d9a5b7c52c2c1115aa297713f2c4901a5b7cc6fb
+SHA512: 4024ba5c05668cae4a91611a12855e1ef135d19cb1db9a958267960666bafe10c8ae14962177dce04a0311eb83b4b9425b36ce7eb0ad1e4d483a8175caca6ce3
+Homepage: https://github.com/lokifisch/cheap
+Description: Cheapest Hierarchical Enchant-Anvil Planner -- a native Minecraft enchantment ordering tool
+

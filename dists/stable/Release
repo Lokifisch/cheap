@@ -1,0 +1,21 @@
+Architectures: amd64
+Components: main
+Date: Thu, 30 Jul 2026 12:57:35 +0000
+Origin: CHEAP
+Suite: stable
+MD5Sum:
+ 73d19d318c71433bed46fb67a2f8dc87              104 Release
+ efd1d4cb24bbe3b85dcaa265f92c5821              733 main/binary-amd64/Packages
+ 217b1df42db2f4650fa0c8a11611c2e8              522 main/binary-amd64/Packages.gz
+SHA1:
+ c50e4e6b6cb87b8404390f11f10053c8c0a4901a              104 Release
+ 7d5e2041228a62309e39c3db3ade974e698285b1              733 main/binary-amd64/Packages
+ 90f239839fb82e4ad2b5d71f984c968131390397              522 main/binary-amd64/Packages.gz
+SHA256:
+ 991f78a367a6e8a7ddb578416bcb3859826ac3b1b95a395a2366b134bceb90c9              104 Release
+ 8ce119f5082eb87f49143696c08f8f45a7acdef7d9b9bd6c110068cf68ac544b              733 main/binary-amd64/Packages
+ 47b96f9968a8428e7e8d29e11a298f462aa963a2073707495c0301819dcefcdb              522 main/binary-amd64/Packages.gz
+SHA512:
+ 45f970e933104527347c6a0694bdcd76f9f9cda9a30f7e6fa1579103b239ff0f35db507634a66bef41f5b3ee795d7bd893ae9d0acb540b4b3a4fbce51fbefc19              104 Release
+ bddf3a4e186a66b8b4ff3b79ca2ba624483f31dca30095068b88906b2ebab4aba04c33261d5acb5c9744547a54033308193fce1e9155fdfb33ddf4a179806006              733 main/binary-amd64/Packages
+ b6b3c55b370fa2e03261e3826b884b5705e5ceb11ace1cbac729adc005033bad4e8151658c28e8e967cf657fc62df1638fb781c0e9b85800c468158ea81dd29a              522 main/binary-amd64/Packages.gz
